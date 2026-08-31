@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Branding Oficial Lucero Express - Paleta Clara DTD Style */
+  --amber-gold: #F2A900;
+  --amber-gold-hover: #D99600;
+  --amber-gold-light: #FEF3C7;
+  --amber-gold-border: #FDE68A;
+  
+  --carbon-black: #1C1917;
+  --carbon-dark: #141210;
+  --carbon-light: #292524;
+
+  --off-white: #FAFAFA;
+  --pure-white: #FFFFFF;
+  --surface-muted: #F5F5F4;
+  --border-light: #E7E5E4;
+  --border-subtle: #F3F4F6;
+  
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #78716C;
+  
+  --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.05);
+  --shadow-md: 0 4px 16px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 12px 32px rgba(28, 25, 23, 0.12);
+  --shadow-gold: 0 8px 24px rgba(242, 169, 0, 0.25);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--off-white);
+  color: var(--text-primary);
+}
+
+body {
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* All Headings & Font Heading Utility use Inter */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F5F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6D3D1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber-gold);
+}
+
+/* Lucero Glow & Shadows */
+.lucero-shadow {
+  box-shadow: 0 10px 30px -5px rgba(28, 25, 23, 0.08), 0 4px 6px -2px rgba(28, 25, 23, 0.04);
+}
+
+.lucero-glow-gold {
+  box-shadow: 0 0 25px rgba(242, 169, 0, 0.25);
+  border: 1px solid rgba(242, 169, 0, 0.3);
+}
+
+/* Background Patterns */
+.bg-subtle-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(28, 25, 23, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 25, 23, 0.03) 1px, transparent 1px);
+}
+
+.bg-lucero-light-pattern {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(242, 169, 0, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(242, 169, 0, 0.06) 0%, transparent 45%);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--amber-gold);
+  color: #1C1917;
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(242, 169, 0, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--amber-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(242, 169, 0, 0.45);
+}
+
+.btn-secondary {
+  background-color: var(--pure-white);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-light);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  border-color: var(--amber-gold);
+  background-color: var(--amber-gold-light);
+  color: var(--carbon-black);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-dark {
+  background-color: var(--carbon-black);
+  color: var(--pure-white);
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--carbon-light);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-dark:hover {
+  background-color: #292524;
+  border-color: var(--amber-gold);
+  transform: translateY(-2px);
+  color: var(--amber-gold);
+}
+
+/* Cards */
+.card-light {
+  background: var(--pure-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.card-light:hover {
+  border-color: var(--amber-gold);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Badge pill */
+.badge-pill {
+  background-color: var(--amber-gold-light);
+  color: #1C1917;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--amber-gold-border);
+  letter-spacing: 0.02em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
