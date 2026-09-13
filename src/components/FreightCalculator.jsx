@@ -17,188 +17,162 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-// Tarifas oficiales autorizadas según tarifario Lucero Express
-export const TARIFF_ROUTES = [
-  {
-    id: 'usa-air-ccs',
-    origin: 'miami',
-    originLabel: 'EE.UU. (Miami)',
-    destination: 'ccs',
-    destinationLabel: 'Caracas (CCS)',
-    mode: 'air',
-    modeLabel: 'Aéreo Express',
-    rate: 6.20,
-    currency: 'USD',
-    currencySymbol: '$',
-    unit: 'Libras',
-    minPrice: 20.00,
-    minLabel: 'Mínimo $20 USD',
-    transitDays: '3 - 5 Días Hábiles',
-  },
-  {
-    id: 'usa-air-resto',
-    origin: 'miami',
-    originLabel: 'EE.UU. (Miami)',
-    destination: 'resto',
-    destinationLabel: 'Resto del País',
-    mode: 'air',
-    modeLabel: 'Aéreo Express',
-    rate: 7.00,
-    currency: 'USD',
-    currencySymbol: '$',
-    unit: 'Libras',
-    minPrice: 21.00,
-    minLabel: 'Mínimo $21 USD',
-    transitDays: '3 - 5 Días Hábiles',
-  },
-  {
-    id: 'usa-sea-central',
-    origin: 'miami',
-    originLabel: 'EE.UU. (Miami)',
-    destination: 'central',
-    destinationLabel: 'Caracas - Maracay - Valencia',
-    mode: 'sea',
-    modeLabel: 'Marítimo LCL',
-    rate: 36.50,
-    currency: 'USD',
-    currencySymbol: '$',
-    unit: 'Pie Cúbico',
-    minPrice: null,
-    minLabel: null,
-    transitDays: '14 - 21 Días Hábiles',
-  },
-  {
-    id: 'usa-sea-interior',
-    origin: 'miami',
-    originLabel: 'EE.UU. (Miami)',
-    destination: 'interior',
-    destinationLabel: 'Interior del País',
-    mode: 'sea',
-    modeLabel: 'Marítimo LCL',
-    rate: 40.50,
-    currency: 'USD',
-    currencySymbol: '$',
-    unit: 'Pie Cúbico',
-    minPrice: null,
-    minLabel: null,
-    transitDays: '14 - 21 Días Hábiles',
-  },
-  {
-    id: 'esp-air-central',
-    origin: 'espana',
-    originLabel: 'España',
-    destination: 'central',
-    destinationLabel: 'Valencia - Caracas - Maracay',
-    mode: 'air',
-    modeLabel: 'Aéreo Courier',
-    rate: 14.00,
-    currency: 'EUR',
-    currencySymbol: '€',
-    unit: 'Kg Volumétrico',
-    minPrice: 14.00,
-    minLabel: 'Mínimo 1 KG (€14 EUR)',
-    transitDays: '5 - 8 Días Hábiles',
-  },
-  {
-    id: 'esp-sea-central',
-    origin: 'espana',
-    originLabel: 'España',
-    destination: 'central',
-    destinationLabel: 'Valencia - Caracas - Maracay',
-    mode: 'sea',
-    modeLabel: 'Marítimo LCL',
-    rate: 39.00,
-    currency: 'EUR',
-    currencySymbol: '€',
-    unit: 'Pie Cúbico',
-    minPrice: null,
-    minLabel: null,
-    transitDays: '25 - 35 Días Hábiles',
-  },
-  {
-    id: 'esp-refrig-central',
-    origin: 'espana',
-    originLabel: 'España',
-    destination: 'central',
-    destinationLabel: 'Valencia - Caracas - Maracay',
-    mode: 'sea',
-    isRefrigerated: true,
-    modeLabel: 'Marítimo Refrigerado',
-    rate: 54.50,
-    currency: 'EUR',
-    currencySymbol: '€',
-    unit: 'Pie Cúbico',
-    minPrice: null,
-    minLabel: null,
-    transitDays: '25 - 35 Días Hábiles',
-  }
+// 4 Destinos individuales disponibles para todas las rutas
+export const DESTINATIONS = [
+  { id: 'caracas', label: 'Caracas' },
+  { id: 'valencia', label: 'Valencia' },
+  { id: 'maracay', label: 'Maracay' },
+  { id: 'resto', label: 'Resto del País' }
 ];
 
 export default function FreightCalculator({ onOpenQuote }) {
   const [shippingType, setShippingType] = useState('air'); // 'air' or 'sea'
-  const [isRefrigerated, setIsRefrigerated] = useState(false); // Casilla refrigerada
+  const [isRefrigerated, setIsRefrigerated] = useState(false); // Solo España Marítimo
   const [origin, setOrigin] = useState('miami'); // 'miami' or 'espana'
-  const [destination, setDestination] = useState('ccs');
+  const [destination, setDestination] = useState('caracas');
   const [weight, setWeight] = useState(10); // in kg
   const [length, setLength] = useState(40); // in cm
   const [width, setWidth] = useState(30);  // in cm
   const [height, setHeight] = useState(30); // in cm
 
-  // Additional Services (do not alter base tariff)
+  // Additional Services
   const [repackRequested, setRepackRequested] = useState(false);
   const [pickupRequested, setPickupRequested] = useState(false);
   const [consolidationRequested, setConsolidationRequested] = useState(true);
   const [dispatchRequested, setDispatchRequested] = useState(true);
 
-  // Available destinations dynamically filtered based on origin & shippingType
-  const availableDestinations = useMemo(() => {
-    if (origin === 'espana') {
-      return [{ id: 'central', label: 'Valencia - Caracas - Maracay' }];
-    }
-    if (shippingType === 'air') {
-      return [
-        { id: 'ccs', label: 'Caracas (CCS)' },
-        { id: 'resto', label: 'Resto del País' }
-      ];
-    }
-    return [
-      { id: 'central', label: 'Caracas - Maracay - Valencia' },
-      { id: 'interior', label: 'Interior del País' }
-    ];
-  }, [origin, shippingType]);
-
   // Handle origin change
   const handleOriginChange = (newOrigin) => {
     setOrigin(newOrigin);
-    if (newOrigin === 'miami') {
-      setDestination(shippingType === 'air' ? 'ccs' : 'central');
-    } else {
-      setDestination('central');
-    }
+    setIsRefrigerated(false);
   };
 
   // Handle mode change
   const handleModeChange = (newMode) => {
     setShippingType(newMode);
-    if (origin === 'miami') {
-      setDestination(newMode === 'air' ? 'ccs' : 'central');
-    } else {
-      setDestination('central');
-    }
+    setIsRefrigerated(false);
   };
 
-  // Determine active route and pricing
+  // Determine active route parameters based on origin, shippingType, isRefrigerated and destination
   const activeRoute = useMemo(() => {
-    if (origin === 'espana' && shippingType === 'sea' && isRefrigerated) {
-      return TARIFF_ROUTES.find(r => r.id === 'esp-refrig-central');
+    const destObj = DESTINATIONS.find(d => d.id === destination) || DESTINATIONS[0];
+    const originLabel = origin === 'miami' ? 'EE.UU. (Miami)' : 'España';
+
+    if (origin === 'miami') {
+      if (shippingType === 'air') {
+        if (destination === 'caracas') {
+          return {
+            id: 'usa-air-ccs',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Aéreo Express',
+            rate: 6.20,
+            currency: 'USD',
+            currencySymbol: '$',
+            unit: 'Libras',
+            minPrice: 20.00,
+            minLabel: 'Mínimo $20 USD',
+            transitDays: '3 - 5 Días Hábiles'
+          };
+        } else {
+          // Valencia, Maracay o Resto del País por Aéreo
+          return {
+            id: 'usa-air-resto',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Aéreo Express',
+            rate: 7.00,
+            currency: 'USD',
+            currencySymbol: '$',
+            unit: 'Libras',
+            minPrice: 21.00,
+            minLabel: 'Mínimo $21 USD',
+            transitDays: '3 - 5 Días Hábiles'
+          };
+        }
+      } else {
+        // Marítimo Miami
+        if (destination === 'resto') {
+          // Interior del País
+          return {
+            id: 'usa-sea-interior',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Marítimo LCL',
+            rate: 40.50,
+            currency: 'USD',
+            currencySymbol: '$',
+            unit: 'Pie Cúbico',
+            minPrice: null,
+            minLabel: null,
+            transitDays: '14 - 21 Días Hábiles'
+          };
+        } else {
+          // Caracas, Maracay, Valencia
+          return {
+            id: 'usa-sea-central',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Marítimo LCL',
+            rate: 36.50,
+            currency: 'USD',
+            currencySymbol: '$',
+            unit: 'Pie Cúbico',
+            minPrice: null,
+            minLabel: null,
+            transitDays: '14 - 21 Días Hábiles'
+          };
+        }
+      }
+    } else {
+      // España
+      if (shippingType === 'air') {
+        return {
+          id: 'esp-air',
+          originLabel,
+          destinationLabel: destObj.label,
+          modeLabel: 'Aéreo Courier',
+          rate: 14.00,
+          currency: 'EUR',
+          currencySymbol: '€',
+          unit: 'Kg Volumétrico',
+          minPrice: 14.00,
+          minLabel: 'Mínimo 1 KG (€14 EUR)',
+          transitDays: '5 - 8 Días Hábiles'
+        };
+      } else {
+        // Marítimo España
+        if (isRefrigerated) {
+          return {
+            id: 'esp-sea-refrig',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Marítimo Refrigerado',
+            rate: 54.50,
+            currency: 'EUR',
+            currencySymbol: '€',
+            unit: 'Pie Cúbico',
+            minPrice: null,
+            minLabel: null,
+            transitDays: '25 - 35 Días Hábiles'
+          };
+        } else {
+          return {
+            id: 'esp-sea-standard',
+            originLabel,
+            destinationLabel: destObj.label,
+            modeLabel: 'Marítimo LCL',
+            rate: 39.00,
+            currency: 'EUR',
+            currencySymbol: '€',
+            unit: 'Pie Cúbico',
+            minPrice: null,
+            minLabel: null,
+            transitDays: '25 - 35 Días Hábiles'
+          };
+        }
+      }
     }
-    return (
-      TARIFF_ROUTES.find(
-        r => r.origin === origin && r.mode === shippingType && r.destination === destination && !r.isRefrigerated
-      ) ||
-      TARIFF_ROUTES.find(r => r.origin === origin && r.mode === shippingType && !r.isRefrigerated) ||
-      TARIFF_ROUTES[0]
-    );
   }, [origin, shippingType, destination, isRefrigerated]);
 
   // Tariff calculation
@@ -238,14 +212,9 @@ export default function FreightCalculator({ onOpenQuote }) {
 
     const totalFormatted = Number(rawCost.toFixed(2));
 
-    let displayModeLabel = activeRoute.modeLabel;
-    if (isRefrigerated) {
-      displayModeLabel = shippingType === 'sea' ? 'Marítimo Refrigerado' : 'Aéreo Refrigerado';
-    }
-
     return {
       route: activeRoute,
-      displayModeLabel,
+      displayModeLabel: activeRoute.modeLabel,
       volWeightKg: volWeightKg.toFixed(1),
       cuft: cuft.toFixed(2),
       cbm: cbm.toFixed(2),
@@ -264,7 +233,9 @@ export default function FreightCalculator({ onOpenQuote }) {
 
   const getSelectedServicesList = () => {
     const list = [];
-    if (isRefrigerated) list.push('Carga Refrigerada');
+    if (origin === 'espana' && shippingType === 'sea' && isRefrigerated) {
+      list.push('Carga Refrigerada');
+    }
     if (consolidationRequested) list.push('Consolidación de Carga');
     if (dispatchRequested) list.push('Despacho de Carga');
     if (repackRequested) list.push('Reempaque de Carga');
@@ -281,7 +252,7 @@ export default function FreightCalculator({ onOpenQuote }) {
     });
     onOpenQuote({
       shippingType,
-      isRefrigerated,
+      isRefrigerated: origin === 'espana' && shippingType === 'sea' && isRefrigerated,
       origin: activeRoute.originLabel,
       destination: activeRoute.destinationLabel,
       serviceName: est.displayModeLabel,
@@ -354,7 +325,7 @@ export default function FreightCalculator({ onOpenQuote }) {
         <form onSubmit={handleAction} className="mt-6 grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10 items-stretch">
 
           {/* Left Column: Form Controls */}
-          <div className="md:col-span-7 flex flex-col justify-between space-y-4">
+          <div className="md:col-span-7 flex flex-col gap-4">
 
             {/* Origin & Destination Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -365,7 +336,7 @@ export default function FreightCalculator({ onOpenQuote }) {
                 <select
                   value={origin}
                   onChange={(e) => handleOriginChange(e.target.value)}
-                  className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-semibold text-sm focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all cursor-pointer"
+                  className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-semibold text-sm focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all cursor-pointer shadow-xs"
                 >
                   <option value="miami">🇺🇸 EE.UU. (Miami)</option>
                   <option value="espana">🇪🇸 España</option>
@@ -374,14 +345,14 @@ export default function FreightCalculator({ onOpenQuote }) {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">
-                  Destino Autorizado
+                  Destino en Venezuela
                 </label>
                 <select
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
-                  className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-semibold text-sm focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all cursor-pointer"
+                  className="w-full bg-stone-50 border border-stone-300 rounded-xl px-3.5 py-2.5 text-stone-900 font-semibold text-sm focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all cursor-pointer shadow-xs"
                 >
-                  {availableDestinations.map(d => (
+                  {DESTINATIONS.map(d => (
                     <option key={d.id} value={d.id}>
                       📍 {d.label}
                     </option>
@@ -390,46 +361,13 @@ export default function FreightCalculator({ onOpenQuote }) {
               </div>
             </div>
 
-            {/* Casilla de Carga Refrigerada integrada */}
-            <div 
-              onClick={() => setIsRefrigerated(!isRefrigerated)}
-              className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between select-none ${
-                isRefrigerated 
-                  ? 'bg-cyan-500/10 border-cyan-400 text-cyan-950' 
-                  : 'bg-stone-50 border-stone-200 text-stone-600 hover:border-stone-300'
-              }`}
-            >
-              <div className="flex items-center gap-2.5">
-                <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
-                  isRefrigerated ? 'bg-cyan-600 text-white' : 'bg-stone-200 text-stone-500'
-                }`}>
-                  <Snowflake className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold block">
-                    Carga Refrigerada (Cadena de Frío)
-                  </span>
-                  <span className="text-[11px] text-stone-500">
-                    {origin === 'espana' && shippingType === 'sea' 
-                      ? 'Tarifa especial refrigerada: €54.50 EUR / Pie Cúbico' 
-                      : 'Manejo con control térmico garantizado'}
-                  </span>
-                </div>
-              </div>
-              <div className={`w-5 h-5 rounded-lg flex items-center justify-center border transition-colors ${
-                isRefrigerated ? 'bg-cyan-600 border-cyan-600 text-white' : 'border-stone-300 bg-white'
-              }`}>
-                {isRefrigerated && <CheckCircle2 className="w-4 h-4 stroke-[3]" />}
-              </div>
-            </div>
-
-            {/* Weight & Dimensions Box */}
-            <div className="bg-stone-50 p-3.5 rounded-2xl border border-stone-200 space-y-2">
-              <div className="flex justify-between items-center mb-1">
+            {/* Weight & Dimensions Box (Fill vertical) */}
+            <div className="bg-stone-50 p-4 sm:p-5 rounded-2xl border border-stone-200 flex-1 flex flex-col justify-between shadow-xs">
+              <div className="flex justify-between items-center">
                 <span className="text-xs font-bold uppercase tracking-wider text-stone-600">
                   Dimensiones y Peso
                 </span>
-                <span className="text-[11px] text-stone-500 font-medium">
+                <span className="text-[11px] text-stone-600 font-bold bg-white px-2.5 py-1 rounded-lg border border-stone-200 shadow-xs">
                   {activeRoute.unit === 'Libras' 
                     ? `≈ ${(weight * 2.20462).toFixed(1)} Lbs` 
                     : activeRoute.unit === 'Pie Cúbico'
@@ -438,9 +376,9 @@ export default function FreightCalculator({ onOpenQuote }) {
                 </span>
               </div>
 
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-2.5 sm:gap-3 my-2">
                 <div>
-                  <label className="block text-[10px] font-bold text-amber-700 uppercase mb-0.5 whitespace-nowrap">
+                  <label className="block text-[10px] font-bold text-amber-700 uppercase mb-1 whitespace-nowrap">
                     Peso (Kg)
                   </label>
                   <input
@@ -450,12 +388,12 @@ export default function FreightCalculator({ onOpenQuote }) {
                     max="3000"
                     value={weight}
                     onChange={(e) => setWeight(Math.max(0.1, Number(e.target.value)))}
-                    className="w-full bg-white border border-stone-300 rounded-lg px-2.5 py-1.5 text-stone-900 font-bold text-sm text-center focus:border-[#F2A900] focus:outline-none"
+                    className="w-full bg-white border border-stone-300 rounded-xl px-2.5 py-2 text-stone-900 font-bold text-sm sm:text-base text-center focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all shadow-xs"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-0.5 whitespace-nowrap">
+                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1 whitespace-nowrap">
                     Largo (cm)
                   </label>
                   <input
@@ -463,11 +401,11 @@ export default function FreightCalculator({ onOpenQuote }) {
                     min="5"
                     value={length}
                     onChange={(e) => setLength(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-white border border-stone-300 rounded-lg px-2 py-1.5 text-stone-900 font-semibold text-sm text-center focus:border-[#F2A900] focus:outline-none"
+                    className="w-full bg-white border border-stone-300 rounded-xl px-2.5 py-2 text-stone-900 font-semibold text-sm sm:text-base text-center focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all shadow-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-0.5 whitespace-nowrap">
+                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1 whitespace-nowrap">
                     Ancho (cm)
                   </label>
                   <input
@@ -475,11 +413,11 @@ export default function FreightCalculator({ onOpenQuote }) {
                     min="5"
                     value={width}
                     onChange={(e) => setWidth(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-white border border-stone-300 rounded-lg px-2 py-1.5 text-stone-900 font-semibold text-sm text-center focus:border-[#F2A900] focus:outline-none"
+                    className="w-full bg-white border border-stone-300 rounded-xl px-2.5 py-2 text-stone-900 font-semibold text-sm sm:text-base text-center focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all shadow-xs"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-0.5 whitespace-nowrap">
+                  <label className="block text-[10px] font-bold text-stone-500 uppercase mb-1 whitespace-nowrap">
                     Alto (cm)
                   </label>
                   <input
@@ -487,9 +425,16 @@ export default function FreightCalculator({ onOpenQuote }) {
                     min="5"
                     value={height}
                     onChange={(e) => setHeight(Math.max(1, Number(e.target.value)))}
-                    className="w-full bg-white border border-stone-300 rounded-lg px-2 py-1.5 text-stone-900 font-semibold text-sm text-center focus:border-[#F2A900] focus:outline-none"
+                    className="w-full bg-white border border-stone-300 rounded-xl px-2.5 py-2 text-stone-900 font-semibold text-sm sm:text-base text-center focus:border-[#F2A900] focus:ring-2 focus:ring-[#F2A900]/20 focus:outline-none transition-all shadow-xs"
                   />
                 </div>
+              </div>
+
+              {/* Resumen sutil de cubicaje al pie del contenedor */}
+              <div className="flex items-center justify-between text-[11px] text-stone-500 pt-2 border-t border-stone-200/80">
+                <span>Volumen: <strong className="text-stone-700 font-semibold">{est.cuft} cuft</strong></span>
+                <span>Peso Vol.: <strong className="text-stone-700 font-semibold">{est.volWeightKg} kg</strong></span>
+                <span>CBM: <strong className="text-stone-700 font-semibold">{est.cbm} m³</strong></span>
               </div>
             </div>
 
@@ -579,6 +524,31 @@ export default function FreightCalculator({ onOpenQuote }) {
                     {pickupRequested && <CheckCircle2 className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </div>
+
+                {/* 5. Carga Refrigerada - Solo visible y aplicable donde está especificado en el tarifario (España Marítimo) */}
+                {origin === 'espana' && shippingType === 'sea' && (
+                  <div
+                    onClick={() => setIsRefrigerated(!isRefrigerated)}
+                    className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between col-span-2 ${
+                      isRefrigerated
+                        ? 'bg-amber-500/10 border-amber-400 text-stone-900'
+                        : 'bg-stone-50 border-stone-200 text-stone-500 hover:border-stone-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 overflow-hidden">
+                      <Snowflake className={`w-4 h-4 shrink-0 ${isRefrigerated ? 'text-[#F2A900]' : 'text-stone-400'}`} />
+                      <div className="truncate text-left">
+                        <span className="text-xs font-bold block truncate">Carga Refrigerada</span>
+                        <span className="text-[10px] text-stone-500 block">Tarifa especial: €54.50 EUR / Pie³</span>
+                      </div>
+                    </div>
+                    <div className={`w-4 h-4 rounded-full shrink-0 flex items-center justify-center border transition-colors ${
+                      isRefrigerated ? 'bg-[#F2A900] border-[#F2A900] text-[#1C1917]' : 'border-stone-300 bg-white'
+                    }`}>
+                      {isRefrigerated && <CheckCircle2 className="w-3.5 h-3.5 stroke-[3]" />}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -632,6 +602,10 @@ export default function FreightCalculator({ onOpenQuote }) {
 
               {/* Specs Breakdown */}
               <div className="space-y-2 text-xs text-stone-300 bg-stone-900/90 p-3 rounded-xl border border-stone-800">
+                <div className="flex justify-between">
+                  <span className="text-stone-400">Destino:</span>
+                  <span className="font-bold text-white">📍 {activeRoute.destinationLabel}</span>
+                </div>
                 <div className="flex justify-between">
                   <span className="text-stone-400">Tiempo de Tránsito:</span>
                   <span className="font-bold text-white">{est.days}</span>
