@@ -23,17 +23,26 @@ export default function QuoteModal({ isOpen, onClose, quoteData }) {
     });
   };
 
+  const currencySym = quoteData?.currencySymbol || '$';
+  const currencyCode = quoteData?.currency || 'USD';
+
   const servicesText = quoteData?.additionalServices && quoteData.additionalServices.length > 0
     ? quoteData.additionalServices.join(', ')
     : 'Servicio Estándar';
 
+  const defaultService = quoteData?.shippingType === 'sea' 
+    ? 'Consolidado Marítimo LCL' 
+    : quoteData?.shippingType === 'refrigerated'
+    ? 'Marítimo Refrigerado'
+    : 'Consolidado Aéreo Express';
+
   const whatsappMessage = encodeURIComponent(
     `Hola Lucero Express! Quisiera confirmar una cotización de envío:\n` +
     `- Cliente: ${formData.name || 'Interesado'}\n` +
-    `- Servicio/Carga: ${quoteData?.serviceName || (quoteData?.shippingType === 'sea' ? 'Consolidado Marítimo LCL' : 'Consolidado Aéreo Express')}\n` +
-    `- Origen/Destino: ${quoteData?.origin || 'China'} -> ${quoteData?.destination || 'Valencia'}\n` +
+    `- Servicio/Carga: ${quoteData?.serviceName || defaultService}\n` +
+    `- Origen/Destino: ${quoteData?.origin || 'EE.UU. (Miami)'} -> ${quoteData?.destination || 'Caracas (CCS)'}\n` +
     `- Servicios Adicionales: ${servicesText}\n` +
-    `- Estimado: $${quoteData?.estimatedCost || 'Tarifa Personalizada'} USD\n` +
+    `- Estimado: ${currencySym}${quoteData?.estimatedCost || 'Tarifa Personalizada'} ${currencyCode}\n` +
     `Por favor contáctenme.`
   );
 
@@ -43,7 +52,7 @@ export default function QuoteModal({ isOpen, onClose, quoteData }) {
         
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-stone-400 hover:text-white bg-[#242220] p-2 rounded-full border border-stone-700 transition-colors"
+          className="absolute top-5 right-5 text-stone-400 hover:text-white bg-[#242220] p-2 rounded-full border border-stone-700 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -67,7 +76,9 @@ export default function QuoteModal({ isOpen, onClose, quoteData }) {
             {quoteData?.estimatedCost && (
               <div className="bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl mb-5 flex items-center justify-between text-xs">
                 <span className="text-stone-300">Estimación preliminar:</span>
-                <span className="text-amber-400 font-extrabold text-base">${quoteData.estimatedCost} USD</span>
+                <span className="text-amber-400 font-extrabold text-base">
+                  {currencySym}{quoteData.estimatedCost} {currencyCode}
+                </span>
               </div>
             )}
 
