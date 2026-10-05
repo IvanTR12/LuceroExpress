@@ -19,13 +19,21 @@
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
-    body { margin: 0; padding: 0; width: 100% !important; background-color: #F5F5F4; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .email-container { max-width: 600px; margin: 0 auto; background-color: #FFFFFF; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #F5F5F4; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; word-break: break-word; }
+    .email-container { max-width: 600px; width: 100%; margin: 0 auto; background-color: #FFFFFF; }
     @media only screen and (max-width: 620px) {
-      .mobile-padding { padding-left: 20px !important; padding-right: 20px !important; }
-      .mobile-stack { display: block !important; width: 100% !important; max-width: 100% !important; }
-      .mobile-center { text-align: center !important; }
-      .address-box { margin-bottom: 12px !important; }
+      .outer-table { padding: 10px 4px !important; }
+      .email-container { width: 100% !important; border-radius: 14px !important; table-layout: fixed !important; }
+      .mobile-padding { padding-left: 14px !important; padding-right: 14px !important; }
+      .mobile-header-padding { padding: 12px 14px !important; }
+      .mobile-hero-padding { padding: 22px 14px 18px 14px !important; }
+      .mobile-logo-iso { width: 28px !important; height: 32px !important; }
+      .mobile-logo-word { width: 105px !important; height: 29px !important; }
+      .mobile-badge { font-size: 9.5px !important; padding: 3px 7px !important; }
+      .mobile-title { font-size: 20px !important; line-height: 1.25 !important; }
+      .mobile-card-padding { padding: 14px 12px !important; margin-bottom: 16px !important; }
+      .mobile-btn { display: block !important; width: 100% !important; text-align: center !important; padding: 13px 14px !important; box-sizing: border-box !important; }
+      .mobile-table-cell { padding: 9px 8px !important; font-size: 11.5px !important; word-break: break-word !important; }
     }
   </style>
 </head>
@@ -36,12 +44,12 @@
     ¡Tu casillero internacional ya está activo! Descubre tus direcciones en Miami y China para comenzar tus envíos a Venezuela.
   </div>
 
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F5F5F4; padding: 24px 10px;">
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="outer-table" style="background-color: #F5F5F4; padding: 24px 10px;">
     <tr>
       <td align="center">
 
         <!-- Outer Card -->
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(28,25,23,0.07); border: 1px solid #E7E5E4;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 600px; width: 100%; table-layout: fixed; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(28,25,23,0.07); border: 1px solid #E7E5E4;">
           
           <!-- Top Accent Gold Bar -->
           <tr>
@@ -50,25 +58,25 @@
 
           <!-- Header: Official Corporate Branding -->
           <tr>
-            <td style="background-color: #FFFFFF; padding: 20px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-padding">
+            <td style="background-color: #FFFFFF; padding: 20px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-header-padding">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td align="left" valign="middle">
                     <a href="https://lucero.com.ve" target="_blank" style="text-decoration: none; display: inline-block;">
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                          <td valign="middle" style="padding-right: 10px;">
-                            <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="36" height="40" style="display: block; border: 0; width: 36px; height: 40px; max-width: 36px;">
+                          <td valign="middle" style="padding-right: 8px;">
+                            <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="36" height="40" class="mobile-logo-iso" style="display: block; border: 0; width: 36px; height: 40px; max-width: 36px;">
                           </td>
                           <td valign="middle">
-                            <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="138" height="38" style="display: block; border: 0; width: 138px; height: 38px; max-width: 138px;">
+                            <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="138" height="38" class="mobile-logo-word" style="display: block; border: 0; width: 138px; height: 38px; max-width: 138px;">
                           </td>
                         </tr>
                       </table>
                     </a>
                   </td>
                   <td align="right" valign="middle">
-                    <span style="background-color: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;">
+                    <span class="mobile-badge" style="background-color: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;">
                       Casillero Activo
                     </span>
                   </td>
@@ -79,7 +87,7 @@
 
           <!-- Hero Greeting -->
           <tr>
-            <td style="padding: 36px 32px 24px 32px;" class="mobile-padding">
+            <td style="padding: 36px 32px 24px 32px;" class="mobile-hero-padding">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td>
@@ -88,7 +96,7 @@
                       🎉 ¡Te damos la bienvenida!
                     </span>
 
-                    <h1 style="color: #1C1917; font-size: 26px; font-weight: 800; line-height: 1.25; margin: 16px 0 10px 0;">
+                    <h1 class="mobile-title" style="color: #1C1917; font-size: 26px; font-weight: 800; line-height: 1.25; margin: 16px 0 10px 0;">
                       ¡Hola, <span style="color: #D97706;">{{NOMBRE_CLIENTE}}</span>! Tu casillero está listo
                     </h1>
 
@@ -100,7 +108,7 @@
               </table>
 
               <!-- Client Account Card -->
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAFAFA; border: 1.5px dashed #D6D3D1; border-radius: 14px; padding: 16px 20px; margin-bottom: 24px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="mobile-card-padding" style="background-color: #FAFAFA; border: 1.5px dashed #D6D3D1; border-radius: 14px; padding: 16px 20px; margin-bottom: 24px;">
                 <tr>
                   <td>
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -112,7 +120,7 @@
                           </div>
                         </td>
                         <td align="right" valign="middle">
-                          <span style="background-color: #10B981; color: #FFFFFF; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px;">
+                          <span class="mobile-badge" style="background-color: #10B981; color: #FFFFFF; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px;">
                             Verificado ✓
                           </span>
                         </td>
@@ -132,13 +140,13 @@
               </p>
 
               <!-- Miami Address Box -->
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; margin-bottom: 12px; overflow: hidden;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="mobile-card-padding" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; margin-bottom: 12px; overflow: hidden;">
                 <tr>
                   <td style="padding: 16px 20px;">
                     <div style="font-size: 13px; font-weight: 700; color: #0284C7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
                       🇺🇸 Almacén Miami (EE.UU.) – Aéreo & Marítimo
                     </div>
-                    <div style="font-size: 13px; color: #334155; line-height: 1.6; font-family: monospace, sans-serif;">
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6; font-family: monospace, sans-serif; word-break: break-word;">
                       <strong>Nombre / Recipient:</strong> {{NOMBRE_CLIENTE}} / #{{CODIGO_CASILLERO}}<br>
                       <strong>Dirección:</strong> 8240 NW 66th St<br>
                       <strong>Suite / Unit:</strong> LC-{{CODIGO_CASILLERO}}<br>
@@ -150,13 +158,13 @@
               </table>
 
               <!-- China Address Box -->
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; margin-bottom: 24px; overflow: hidden;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="mobile-card-padding" style="background-color: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; margin-bottom: 24px; overflow: hidden;">
                 <tr>
                   <td style="padding: 16px 20px;">
                     <div style="font-size: 13px; font-weight: 700; color: #D97706; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
                       🇨🇳 Bodega de Consolidación (China) – Guangzhou / Yiwu
                     </div>
-                    <div style="font-size: 13px; color: #451A03; line-height: 1.6;">
+                    <div style="font-size: 13px; color: #451A03; line-height: 1.6; word-break: break-word;">
                       Disponible para consolidación de contenedores y cargas comerciales. Contacta a nuestro equipo por WhatsApp para asignarte la bodega correspondiente a tu proveedor (Yiwu, Shenzhen o Guangzhou).
                     </div>
                   </td>
@@ -220,7 +228,7 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 12px 0 20px 0;">
                 <tr>
                   <td align="center">
-                    <a href="https://lucero.com.ve" target="_blank" style="display: inline-block; background-color: #F2A900; color: #1C1917; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(242,169,0,0.35);">
+                    <a href="https://lucero.com.ve" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #F2A900; color: #1C1917; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(242,169,0,0.35);">
                       Ingresar a Mi Casillero →
                     </a>
                   </td>
@@ -254,17 +262,24 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td align="left" style="padding-bottom: 16px; border-bottom: 1px solid #292524;">
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                    <!-- Official Logo Badge -->
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 10px;">
                       <tr>
-                        <td valign="middle" style="padding-right: 8px;">
-                          <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="24" height="27" style="display: block; border: 0; width: 24px; height: 27px;">
-                        </td>
-                        <td valign="middle">
-                          <img src="https://lucero.com.ve/SVG/LOGOTIPO-white.svg" alt="Lucero Express" width="105" height="28" style="display: block; border: 0; width: 105px; height: 28px;">
+                        <td style="background-color: #FFFFFF; border-radius: 8px; padding: 6px 12px; display: inline-block;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td valign="middle" style="padding-right: 8px;">
+                                <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="22" height="25" style="display: block; border: 0; width: 22px; height: 25px;">
+                              </td>
+                              <td valign="middle">
+                                <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="95" height="26" style="display: block; border: 0; width: 95px; height: 26px;">
+                              </td>
+                            </tr>
+                          </table>
                         </td>
                       </tr>
                     </table>
-                    <span style="display: block; color: #78716C; font-size: 11px; margin-top: 6px;">Puente logístico internacional China - USA - Venezuela</span>
+                    <span style="display: block; color: #78716C; font-size: 11px; margin-top: 2px;">Puente logístico internacional China - USA - Venezuela</span>
                   </td>
                 </tr>
                 <tr>

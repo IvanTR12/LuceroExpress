@@ -291,9 +291,9 @@
   <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-        <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Isotipo" style="height: 38px; width: auto; object-fit: contain;">
-        <img src="https://lucero.com.ve/SVG/LOGOTIPO-white.svg" alt="Lucero Express" style="height: 28px; width: auto; object-fit: contain;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; background: #FFFFFF; padding: 6px 14px; border-radius: 8px;">
+        <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Isotipo" style="height: 28px; width: auto; object-fit: contain;">
+        <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" style="height: 24px; width: auto; object-fit: contain;">
       </div>
       <div class="sidebar-subtitle">
         Suite oficial de 9 plantillas de correo HTML para operaciones y cobranzas.
@@ -322,9 +322,9 @@
       <div class="topbar-actions">
         <!-- Viewport selector -->
         <div class="viewport-btn-group">
-          <button class="vp-btn active" onclick="setViewport('desktop')">🖥️ Desktop (640px)</button>
-          <button class="vp-btn" onclick="setViewport('mobile')">📱 Móvil (380px)</button>
-          <button class="vp-btn" onclick="setViewport('full')">↔️ 100%</button>
+          <button class="vp-btn active" onclick="setViewport('desktop', this)">🖥️ Desktop (640px)</button>
+          <button class="vp-btn" onclick="setViewport('mobile', this)">📱 Móvil (390px)</button>
+          <button class="vp-btn" onclick="setViewport('full', this)">↔️ 100%</button>
         </div>
 
         <!-- Open Raw -->
@@ -465,19 +465,19 @@
       document.getElementById('previewFrame').src = t.file;
     }
 
-    function setViewport(mode) {
-      document.querySelectorAll('.vp-btn').forEach(btn => btn.classList.remove('active'));
+    function setViewport(mode, btn) {
+      document.querySelectorAll('.vp-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      }
       const wrapper = document.getElementById('iframeWrapper');
       
       if (mode === 'desktop') {
         wrapper.style.width = '640px';
-        event.target.classList.add('active');
       } else if (mode === 'mobile') {
-        wrapper.style.width = '380px';
-        event.target.classList.add('active');
+        wrapper.style.width = '390px';
       } else if (mode === 'full') {
         wrapper.style.width = '100%';
-        event.target.classList.add('active');
       }
     }
 

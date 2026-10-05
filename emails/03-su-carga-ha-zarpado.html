@@ -10,12 +10,25 @@
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
-    body { margin: 0; padding: 0; width: 100% !important; background-color: #F5F5F4; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .email-container { max-width: 600px; margin: 0 auto; background-color: #FFFFFF; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #F5F5F4; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; word-break: break-word; }
+    .email-container { max-width: 600px; width: 100%; margin: 0 auto; background-color: #FFFFFF; }
     @media only screen and (max-width: 620px) {
-      .mobile-padding { padding-left: 20px !important; padding-right: 20px !important; }
-      .mobile-stack { display: block !important; width: 100% !important; max-width: 100% !important; }
-      .mobile-center { text-align: center !important; }
+      .outer-table { padding: 10px 4px !important; }
+      .email-container { width: 100% !important; border-radius: 14px !important; table-layout: fixed !important; }
+      .mobile-padding { padding-left: 14px !important; padding-right: 14px !important; }
+      .mobile-header-padding { padding: 12px 14px !important; }
+      .mobile-hero-padding { padding: 22px 14px 18px 14px !important; }
+      .mobile-stepper-padding { padding: 12px 6px !important; }
+      .mobile-logo-iso { width: 28px !important; height: 32px !important; }
+      .mobile-logo-word { width: 105px !important; height: 29px !important; }
+      .mobile-badge { font-size: 9.5px !important; padding: 3px 7px !important; }
+      .mobile-title { font-size: 20px !important; line-height: 1.25 !important; }
+      .mobile-card { padding: 14px 12px !important; margin-bottom: 16px !important; }
+      .mobile-btn { display: block !important; width: 100% !important; text-align: center !important; padding: 13px 14px !important; box-sizing: border-box !important; }
+      .mobile-table-cell { padding: 9px 8px !important; font-size: 11.5px !important; word-break: break-word !important; }
+      .mobile-col-key { width: 36% !important; }
+      .mobile-step-circle { width: 18px !important; height: 18px !important; line-height: 18px !important; font-size: 8.5px !important; margin-bottom: 2px !important; }
+      .mobile-step-text { font-size: 8px !important; }
     }
   </style>
 </head>
@@ -26,12 +39,12 @@
     ¡Excelentes noticias! Tu carga ha zarpado formalmente desde {{PUERTO_ORIGEN}} rumbo a Venezuela en la guía #{{NUMERO_GUIA}}.
   </div>
 
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F5F5F4; padding: 24px 10px;">
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="outer-table" style="background-color: #F5F5F4; padding: 24px 10px;">
     <tr>
       <td align="center">
 
         <!-- Outer Card -->
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 600px; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(28,25,23,0.07); border: 1px solid #E7E5E4;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 600px; width: 100%; table-layout: fixed; background-color: #FFFFFF; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(28,25,23,0.07); border: 1px solid #E7E5E4;">
           
           <!-- Top Accent Gold Bar -->
           <tr>
@@ -40,7 +53,7 @@
 
           <!-- Header: Official Corporate Branding -->
           <tr>
-            <td style="background-color: #FFFFFF; padding: 20px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-padding">
+            <td style="background-color: #FFFFFF; padding: 20px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-header-padding">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td align="left" valign="middle">
@@ -48,17 +61,17 @@
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                           <td valign="middle" style="padding-right: 10px;">
-                            <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="36" height="40" style="display: block; border: 0; width: 36px; height: 40px; max-width: 36px;">
+                            <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="36" height="40" class="mobile-logo-iso" style="display: block; border: 0; width: 36px; height: 40px; max-width: 36px;">
                           </td>
                           <td valign="middle">
-                            <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="138" height="38" style="display: block; border: 0; width: 138px; height: 38px; max-width: 138px;">
+                            <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="138" height="38" class="mobile-logo-word" style="display: block; border: 0; width: 138px; height: 38px; max-width: 138px;">
                           </td>
                         </tr>
                       </table>
                     </a>
                   </td>
                   <td align="right" valign="middle">
-                    <span style="background-color: rgba(2,132,199,0.15); color: #0284C7; border: 1px solid rgba(2,132,199,0.3); font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;">
+                    <span class="mobile-badge" style="background-color: rgba(2,132,199,0.15); color: #0284C7; border: 1px solid rgba(2,132,199,0.3); font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;">
                       🚢 Ha Zarpado
                     </span>
                   </td>
@@ -69,31 +82,31 @@
 
           <!-- Stepper / Pipeline Progress -->
           <tr>
-            <td style="background-color: #FAFAFA; padding: 18px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-padding">
+            <td style="background-color: #FAFAFA; padding: 18px 32px; border-bottom: 1px solid #E7E5E4;" class="mobile-stepper-padding">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <!-- Step 1: Done -->
                   <td align="center" width="20%">
-                    <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #10B981; color: #FFFFFF; font-size: 11px; font-weight: 800; line-height: 24px; margin: 0 auto 4px auto;">✓</div>
-                    <span style="font-size: 10px; font-weight: 600; color: #059669; display: block;">Bodega</span>
+                    <div class="mobile-step-circle" style="width: 24px; height: 24px; border-radius: 50%; background-color: #10B981; color: #FFFFFF; font-size: 11px; font-weight: 800; line-height: 24px; margin: 0 auto 4px auto;">✓</div>
+                    <span class="mobile-step-text" style="font-size: 10px; font-weight: 600; color: #059669; display: block;">Bodega</span>
                   </td>
                   <td width="6%"><div style="height: 2px; background-color: #10B981;"></div></td>
                   <!-- Step 2: Active -->
                   <td align="center" width="20%">
-                    <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #F2A900; color: #1C1917; font-size: 11px; font-weight: 800; line-height: 24px; margin: 0 auto 4px auto; box-shadow: 0 0 10px rgba(242,169,0,0.5);">2</div>
-                    <span style="font-size: 10px; font-weight: 700; color: #1C1917; display: block;">Zarpó</span>
+                    <div class="mobile-step-circle" style="width: 24px; height: 24px; border-radius: 50%; background-color: #F2A900; color: #1C1917; font-size: 11px; font-weight: 800; line-height: 24px; margin: 0 auto 4px auto; box-shadow: 0 0 10px rgba(242,169,0,0.5);">2</div>
+                    <span class="mobile-step-text" style="font-size: 10px; font-weight: 700; color: #1C1917; display: block;">Zarpó</span>
                   </td>
                   <td width="6%"><div style="height: 2px; background-color: #E7E5E4;"></div></td>
                   <!-- Step 3 -->
                   <td align="center" width="20%">
-                    <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #E7E5E4; color: #78716C; font-size: 11px; font-weight: 700; line-height: 24px; margin: 0 auto 4px auto;">3</div>
-                    <span style="font-size: 10px; font-weight: 600; color: #A8A29E; display: block;">Navegando</span>
+                    <div class="mobile-step-circle" style="width: 24px; height: 24px; border-radius: 50%; background-color: #E7E5E4; color: #78716C; font-size: 11px; font-weight: 700; line-height: 24px; margin: 0 auto 4px auto;">3</div>
+                    <span class="mobile-step-text" style="font-size: 10px; font-weight: 600; color: #A8A29E; display: block;">Navegando</span>
                   </td>
                   <td width="6%"><div style="height: 2px; background-color: #E7E5E4;"></div></td>
                   <!-- Step 4 -->
                   <td align="center" width="20%">
-                    <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #E7E5E4; color: #78716C; font-size: 11px; font-weight: 700; line-height: 24px; margin: 0 auto 4px auto;">4</div>
-                    <span style="font-size: 10px; font-weight: 600; color: #A8A29E; display: block;">Aduana</span>
+                    <div class="mobile-step-circle" style="width: 24px; height: 24px; border-radius: 50%; background-color: #E7E5E4; color: #78716C; font-size: 11px; font-weight: 700; line-height: 24px; margin: 0 auto 4px auto;">4</div>
+                    <span class="mobile-step-text" style="font-size: 10px; font-weight: 600; color: #A8A29E; display: block;">Aduana</span>
                   </td>
                 </tr>
               </table>
@@ -102,12 +115,12 @@
 
           <!-- Main Body -->
           <tr>
-            <td style="padding: 32px 32px 24px 32px;" class="mobile-padding">
+            <td style="padding: 32px 32px 24px 32px;" class="mobile-hero-padding">
               <span style="background-color: #E0F2FE; color: #0369A1; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid #BAE6FD;">
                 🌊 En Camino a Venezuela
               </span>
 
-              <h1 style="color: #1C1917; font-size: 24px; font-weight: 800; line-height: 1.3; margin: 16px 0 10px 0;">
+              <h1 class="mobile-title" style="color: #1C1917; font-size: 24px; font-weight: 800; line-height: 1.3; margin: 16px 0 10px 0;">
                 ¡Tu carga ha zarpado formalmente!
               </h1>
 
@@ -116,7 +129,7 @@
               </p>
 
               <!-- Route Banner -->
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="mobile-card" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;">
                 <tr>
                   <td>
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -150,26 +163,26 @@
                 ⚓ Datos del Zarpe y Manifiesto
               </h2>
 
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FAFAFA; border: 1px solid #E7E5E4; border-radius: 12px; overflow: hidden; margin-bottom: 24px; font-size: 13px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed; width: 100%; background-color: #FAFAFA; border: 1px solid #E7E5E4; border-radius: 12px; overflow: hidden; margin-bottom: 24px; font-size: 13px;">
                 <tr>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C; width: 42%;">Número de Guía Lucero:</td>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 700;">#{{NUMERO_GUIA}}</td>
+                  <td class="mobile-table-cell mobile-col-key" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C; width: 42%;">Número de Guía:</td>
+                  <td class="mobile-table-cell" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 700;">#{{NUMERO_GUIA}}</td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Buque / Línea Naviera:</td>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600;">{{NOMBRE_BUQUE_O_LINEA}}</td>
+                  <td class="mobile-table-cell mobile-col-key" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Buque / Línea:</td>
+                  <td class="mobile-table-cell" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600;">{{NOMBRE_BUQUE_O_LINEA}}</td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Contenedor / Manifiesto:</td>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600; font-family: monospace;">{{NUMERO_CONTENEDOR}}</td>
+                  <td class="mobile-table-cell mobile-col-key" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Contenedor:</td>
+                  <td class="mobile-table-cell" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600; font-family: monospace;">{{NUMERO_CONTENEDOR}}</td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Tiempo Estimado de Travesía:</td>
-                  <td style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600;">{{TIEMPO_ESTIMADO_DIAS}} días aprox.</td>
+                  <td class="mobile-table-cell mobile-col-key" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #78716C;">Tiempo Estimado:</td>
+                  <td class="mobile-table-cell" style="padding: 12px 16px; border-bottom: 1px solid #E7E5E4; color: #1C1917; font-weight: 600;">{{TIEMPO_ESTIMADO_DIAS}} días aprox.</td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; color: #78716C;">Estado Actual:</td>
-                  <td style="padding: 12px 16px; color: #0284C7; font-weight: 700;">En navegación oceánica marítima</td>
+                  <td class="mobile-table-cell mobile-col-key" style="padding: 12px 16px; color: #78716C;">Estado Actual:</td>
+                  <td class="mobile-table-cell" style="padding: 12px 16px; color: #0284C7; font-weight: 700;">En navegación oceánica marítima</td>
                 </tr>
               </table>
 
@@ -186,7 +199,7 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 10px 0 20px 0;">
                 <tr>
                   <td align="center">
-                    <a href="https://lucero.com.ve" target="_blank" style="display: inline-block; background-color: #F2A900; color: #1C1917; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(242,169,0,0.35);">
+                    <a href="https://lucero.com.ve" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #F2A900; color: #1C1917; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(242,169,0,0.35);">
                       Ver Estado de Mi Carga →
                     </a>
                   </td>
@@ -212,17 +225,24 @@
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #1C1917; padding: 24px 32px; color: #A8A29E; font-size: 12px; line-height: 1.6;" class="mobile-padding">
+            <td style="background-color: #1C1917; padding: 24px 32px; color: #A8A29E; font-size: 12px; line-height: 1.6;" class="mobile-header-padding">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td align="left">
+                    <!-- Official Logo Badge -->
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 12px;">
                       <tr>
-                        <td valign="middle" style="padding-right: 8px;">
-                          <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="22" height="25" style="display: block; border: 0; width: 22px; height: 25px;">
-                        </td>
-                        <td valign="middle">
-                          <img src="https://lucero.com.ve/SVG/LOGOTIPO-white.svg" alt="Lucero Express" width="95" height="26" style="display: block; border: 0; width: 95px; height: 26px;">
+                        <td style="background-color: #FFFFFF; border-radius: 8px; padding: 6px 12px; display: inline-block;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td valign="middle" style="padding-right: 8px;">
+                                <img src="https://lucero.com.ve/SVG/ISOTIPO.svg" alt="Lucero Express" width="22" height="25" style="display: block; border: 0; width: 22px; height: 25px;">
+                              </td>
+                              <td valign="middle">
+                                <img src="https://lucero.com.ve/SVG/LOGOTIPO.svg" alt="Lucero Express" width="95" height="26" style="display: block; border: 0; width: 95px; height: 26px;">
+                              </td>
+                            </tr>
+                          </table>
                         </td>
                       </tr>
                     </table>
