@@ -39,8 +39,8 @@ export default function App() {
           onOpenQuote={handleOpenQuote} 
         />
 
-        {/* Section 2: Social Proof & Metrics */}
-        <Metrics />
+        {/* Section 2: Social Proof & Metrics (Oculto temporalmente) */}
+        {/* <Metrics /> */}
 
         {/* Section 3: Specialized Services (LCL & Express Air) */}
         <Services 
