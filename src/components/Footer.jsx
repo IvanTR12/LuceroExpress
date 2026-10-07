@@ -1,6 +1,6 @@
 import React from 'react';
 import LuceroLogo from './LuceroLogo';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowRight, Globe, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
 export default function Footer({ onOpenQuote }) {
   return (
@@ -8,7 +8,15 @@ export default function Footer({ onOpenQuote }) {
 
       {/* Background Decorative SVG Watermark */}
       <div className="absolute right-[-100px] bottom-[-100px] opacity-[0.03] pointer-events-none select-none">
-        <img src="/SVG/ISOLOGO.svg" alt="Footer Watermark" className="w-[600px] h-auto" />
+        <img 
+          src="/SVG/ISOLOGO.svg" 
+          alt="Lucero Express - Logotipo de transporte de carga y envíos consolidados" 
+          width="600" 
+          height="681" 
+          loading="lazy" 
+          decoding="async" 
+          className="w-[600px] h-auto" 
+        />
       </div>
 
       <div className="container relative z-10">
@@ -18,7 +26,7 @@ export default function Footer({ onOpenQuote }) {
 
           {/* Col 1 & 2: Brand Overview */}
           <div className="lg:col-span-2 space-y-4">
-            <LuceroLogo variant="light" size="medium" type="horizontal" />
+            <LuceroLogo variant="light" size="medium" type="horizontal" loading="lazy" />
 
             <p className="text-stone-400 text-sm leading-relaxed max-w-sm pt-2">
               Puente logístico entre China, EE.UU. y Venezuela. Especialistas en envíos consolidados LCL y paquetería aérea express con gestión aduanal 100% incluida.
@@ -29,7 +37,8 @@ export default function Footer({ onOpenQuote }) {
               <a
                 href="https://wa.me/584223002525"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label="Atención al cliente por WhatsApp"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors no-underline shadow-md"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -43,8 +52,8 @@ export default function Footer({ onOpenQuote }) {
               <a
                 href="https://www.instagram.com/lucero.express/"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram @lucero.express"
+                rel="noopener noreferrer"
+                aria-label="Síguenos en Instagram @lucero.express"
                 className="w-10 h-10 rounded-xl bg-stone-900 border border-stone-800 text-amber-400 flex items-center justify-center hover:bg-[#F2A900] hover:text-[#1C1917] transition-colors group"
                 title="@lucero.express"
               >
@@ -106,7 +115,13 @@ export default function Footer({ onOpenQuote }) {
               </li>
               <li className="flex items-center gap-2.5 pt-1">
                 <Phone className="w-4 h-4 text-[#F2A900] shrink-0" />
-                <a href="https://wa.me/584223002525" target="_blank" rel="noreferrer" className="hover:text-[#F2A900] text-stone-300 no-underline font-medium">
+                <a 
+                  href="https://wa.me/584223002525" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Contactar por WhatsApp al +58 422 3002525"
+                  className="hover:text-[#F2A900] text-stone-300 no-underline font-medium"
+                >
                   +58 422 3002525
                 </a>
               </li>

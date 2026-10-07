@@ -36,7 +36,8 @@ export default function Navbar({ onOpenQuote }) {
             <a 
               href="https://wa.me/584223002525" 
               target="_blank" 
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="Contactar a Lucero Express por WhatsApp"
               className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium no-underline"
             >
               <MessageCircle className="w-3.5 h-3.5" />
@@ -60,8 +61,8 @@ export default function Navbar({ onOpenQuote }) {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
           
           {/* Brand Logo */}
-          <a href="#" className="no-underline flex-shrink-0">
-            <LuceroLogo variant="dark" size="medium" type="horizontal" />
+          <a href="/" className="no-underline flex-shrink-0" aria-label="Lucero Express - Página de inicio">
+            <LuceroLogo variant="dark" size="medium" type="horizontal" loading="eager" />
           </a>
 
           {/* Desktop Navigation Links - Single line, equidistant, clean spacing */}

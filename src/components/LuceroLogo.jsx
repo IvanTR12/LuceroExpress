@@ -11,7 +11,8 @@ import React from 'react';
 export default function LuceroLogo({ 
   variant = 'dark', 
   size = 'medium', 
-  type = 'horizontal' 
+  type = 'horizontal',
+  loading = 'eager'
 }) {
   const isLight = variant === 'light'; // Light text/logo for dark background contexts
 
@@ -25,7 +26,11 @@ export default function LuceroLogo({
       <div className="inline-flex items-center justify-center flex-shrink-0">
         <img 
           src="/SVG/ISOTIPO.svg" 
-          alt="Lucero Express Isotipo" 
+          alt="Lucero Express - Símbolo de logística y envíos internacionales" 
+          width="36"
+          height="40"
+          loading={loading}
+          decoding="async"
           className={`${isotipoHClass} w-auto object-contain drop-shadow-sm`}
         />
       </div>
@@ -39,7 +44,11 @@ export default function LuceroLogo({
       <div className="inline-flex items-center justify-center flex-shrink-0">
         <img 
           src="/SVG/ISOLOGO.svg" 
-          alt="Lucero Express Isologo" 
+          alt="Lucero Express - Isologo oficial" 
+          width="80"
+          height="90"
+          loading={loading}
+          decoding="async"
           className={`${isologoH} w-auto object-contain ${isLight ? 'brightness-0 invert' : ''}`}
         />
       </div>
@@ -52,7 +61,11 @@ export default function LuceroLogo({
       <div className="inline-flex items-center flex-shrink-0">
         <img 
           src="/SVG/LOGOTIPO.svg" 
-          alt="Lucero Express Logotipo" 
+          alt="Lucero Express - Logotipo de envíos puerta a puerta" 
+          width="128"
+          height="40"
+          loading={loading}
+          decoding="async"
           className={`${hClass} w-auto object-contain ${isLight ? 'brightness-0 invert' : ''}`}
         />
       </div>
@@ -64,12 +77,20 @@ export default function LuceroLogo({
     <div className="flex items-center gap-2.5 flex-shrink-0 group cursor-pointer">
       <img 
         src="/SVG/ISOTIPO.svg" 
-        alt="Lucero Express Symbol" 
+        alt="Lucero Express - Símbolo de envíos internacionales" 
+        width="36"
+        height="40"
+        loading={loading}
+        decoding="async"
         className={`${isotipoHClass} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
       />
       <img 
         src="/SVG/LOGOTIPO.svg" 
-        alt="Lucero Express Logotipo" 
+        alt="Lucero Express - Logística y flete consolidado a Venezuela" 
+        width="128"
+        height="40"
+        loading={loading}
+        decoding="async"
         className={`${hClass} w-auto object-contain ${isLight ? 'brightness-0 invert' : ''}`}
       />
     </div>

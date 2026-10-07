@@ -54,7 +54,15 @@ export default function Process({ onOpenQuote }) {
       
       {/* Ambient background watermark */}
       <div className="absolute right-10 bottom-10 opacity-[0.03] pointer-events-none hidden lg:block">
-        <img src="/SVG/ISOTIPO.svg" alt="Watermark" className="w-96 h-auto" />
+        <img 
+          src="/SVG/ISOTIPO.svg" 
+          alt="Lucero Express - Proceso de envíos desde origen hasta Venezuela" 
+          width="384" 
+          height="436" 
+          loading="lazy" 
+          decoding="async" 
+          className="w-96 h-auto" 
+        />
       </div>
 
       <div className="container relative z-10">

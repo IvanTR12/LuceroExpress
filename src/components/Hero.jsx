@@ -12,7 +12,15 @@ export default function Hero({ onOpenTracking, onOpenQuote }) {
 
       {/* Subtle Logo Watermark in Background */}
       <div className="absolute right-[-80px] top-28 opacity-[0.04] pointer-events-none hidden lg:block select-none">
-        <img src="/SVG/ISOTIPO.svg" alt="Watermark" className="w-[580px] h-auto" />
+        <img 
+          src="/SVG/ISOTIPO.svg" 
+          alt="Lucero Express - Logística y envíos aéreos y marítimos a Venezuela" 
+          width="580" 
+          height="659" 
+          loading="eager" 
+          decoding="async"
+          className="w-[580px] h-auto" 
+        />
       </div>
 
       <div className="container relative z-10">
@@ -28,14 +36,19 @@ export default function Hero({ onOpenTracking, onOpenQuote }) {
 
           {/* Main Title (H1) */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] text-[#1C1917] font-heading tracking-tight">
-            Con Confianza, de Origen a tu Puerta <br className="hidden sm:inline" />
+            Envíos Aéreos y Marítimos a Venezuela <br className="hidden sm:inline" />
             <span className="text-[#F2A900] relative inline-block">
-              en Venezuela
+              Puerta a Puerta desde China y EE.UU.
               <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#F2A900]/40" viewBox="0 0 100 20" preserveAspectRatio="none">
                 <path d="M0 15 Q50 0 100 15" stroke="currentColor" strokeWidth="4" fill="none" />
               </svg>
             </span>
           </h1>
+
+          {/* Slogan de Marca como Subheading */}
+          <p className="text-amber-800/90 font-semibold text-sm sm:text-base tracking-wide uppercase">
+            Con Confianza, de Origen a tu Puerta en Venezuela
+          </p>
 
           {/* Subtitle / Value Proposition */}
           <p className="text-stone-600 text-base sm:text-xl font-medium leading-relaxed max-w-3xl mx-auto">

@@ -286,9 +286,9 @@ export default function FreightCalculator({ onOpenQuote }) {
                 <Sparkles className="w-3.5 h-3.5 text-[#F2A900]" />
                 Cotizador Rápido de Flete
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#1C1917] font-heading tracking-tight">
-                Calcula tu tarifa estimada
-              </h3>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#1C1917] font-heading tracking-tight">
+                Calcula tu Tarifa Estimada
+              </h2>
             </div>
           </div>
 
