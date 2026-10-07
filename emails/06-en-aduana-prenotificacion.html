@@ -7,7 +7,8 @@
   <title>Pre-Notificación Aduanal - Lucero Express</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    * { box-sizing: border-box; }
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; box-sizing: border-box; }
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
     body { margin: 0; padding: 0; width: 100% !important; background-color: #F5F5F4; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; word-break: break-word; }
@@ -129,9 +130,12 @@
               </p>
 
               <!-- Customs Clearance Guarantee Banner -->
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="mobile-card" style="background-color: #FFFBEB; border: 1.5px solid #FCD34D; border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
                 <tr>
-                  <td width="36" valign="top">
+                  <td class="mobile-card" style="background-color: #FFFBEB; border: 1.5px solid #FCD34D; border-radius: 14px; padding: 18px 20px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td width="36" valign="top">
                     <div style="width: 32px; height: 32px; border-radius: 50%; background-color: #F59E0B; color: #FFFFFF; text-align: center; line-height: 32px; font-size: 16px;">
                       ✓
                     </div>
@@ -143,6 +147,9 @@
                     <div style="font-size: 13px; color: #78350F; line-height: 1.5;">
                       No requieres realizar trámites ni gestiones externas. Nuestro equipo de agentes aduanales está tramitando la nacionalización, verificación de aforo y liberación de la mercancía.
                     </div>
+                  </td>
+                </tr>
+              </table>
                   </td>
                 </tr>
               </table>
@@ -184,8 +191,8 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 10px 0 20px 0;">
                 <tr>
                   <td align="center">
-                    <a href="https://lucero.com.ve" target="_blank" class="mobile-btn" style="display: inline-block; background-color: #F2A900; color: #1C1917; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(242,169,0,0.35);">
-                      Consultar Estatus en Línea →
+                    <a href="https://wa.me/584223002525?text=Hola%20Lucero%20Express,%20deseo%20consultar%20el%20estatus%20de%20desaduanamiento%20de%20mi%20gu%C3%ADa%20{{NUMERO_GUIA}}." target="_blank" class="mobile-btn" style="display: inline-block; background-color: #25D366; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none; padding: 14px 34px; border-radius: 12px; box-shadow: 0 4px 14px rgba(37,211,102,0.35);">
+                      Consultar Desaduanamiento por WhatsApp →
                     </a>
                   </td>
                 </tr>
